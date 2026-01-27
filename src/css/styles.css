@@ -3,5 +3,33 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Poppins, sans-serif;
+    /*outline: 1px dashed red;*/
 
+}
+
+body {
+    background-color: rgb(236, 236, 236);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logopedeaki {
+    width: 170px;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.sectionbanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banners {
+    width: 350px;
 }

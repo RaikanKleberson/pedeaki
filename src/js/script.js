@@ -53,7 +53,7 @@ function diminuir(id) {
 }
 
 function finalizarPedido() {
-  let mensagem = "🛒 *Pedido - Pedeaki*\n\n";
+  let mensagem = "*Pedido - Pedeaki*\n\n";
   let total = 0;
 
   produtos.forEach(produto => {
@@ -63,10 +63,11 @@ function finalizarPedido() {
     }
   });
 
-  mensagem += `\n💰 *Total: R$ ${total.toFixed(2)}*`;
+  mensagem += `\n *Total: R$ ${total.toFixed(2)}*`;
 
   const telefoneMercado = "5563999665779"; // número do mercado
   const url = `https://wa.me/${telefoneMercado}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(url, "_blank");
 }
+
