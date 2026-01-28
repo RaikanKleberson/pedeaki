@@ -5,14 +5,14 @@ const produtos = [
     nome: "Arroz 5kg", 
     preco: 28.90, 
     qtd: 0,
-    imagem: "src/images/produtos/arroz.jpg" // Adicione suas imagens
+    imagem: "/src/images/produtos/arroz.png" // Adicione suas imagens
   },
   { 
     id: 2, 
     nome: "Feijão 1kg", 
     preco: 8.50, 
     qtd: 0,
-    imagem: "src/images/produtos/feijao.jpg"
+    imagem: "src/images/produtos/feijao.png"
   },
   { 
     id: 3, 
@@ -48,6 +48,21 @@ const produtos = [
 const catalogoEl = document.getElementById("catalogo");
 const listaCarrinhoEl = document.getElementById("lista-produtos");
 const totalPedidoEl = document.getElementById("total-pedido");
+
+//SLIDE BANNER
+
+let slide = document.querySelectorAll('.slide');
+
+let index = 0
+
+setInterval(() => {
+
+  slide[index].classList.remove('active');
+  index = (index + 1) % slide.length;
+  slide[index].classList.add('active');
+
+}, 3000);
+
 
 // Inicializar catálogo
 function inicializarCatalogo() {
