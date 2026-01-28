@@ -5,30 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PEDEAKI - Catálogo Online</title>
     <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-    <header>
-        <div>
-            <img src="/src/images/logotipopedeaki.png" class="logopedeaki" alt="logopedeaki">
+    <!-- HEADER COM LOGO -->
+    <header class="header">
+        <div class="container">
+            <img src="/src/images/logotipopedeaki.png" class="logo" alt="Logo Pedeaki">
         </div>
     </header>
-
-    <section class="sectionbanner">
-        <div>
-            <img class="banners" src="/src/images/banners/2.png" alt="banner1">
+    
+    <!-- BANNER PROMOCIONAL -->
+    <section class="banner">
+        <div class="container">
+            <img src="/src/images/banners/banner1.png" class="banner-img" alt="Promoções">
         </div>
     </section>
-        
-    <section class="section-catalog">
-                <div id="catalogo"></div>
-  <div id="lista-produtos"></div>
-    </section>
+    
+    <!-- CATÁLOGO DE PRODUTOS -->
+    <main class="catalogo">
+        <div class="container">
+            <h2 class="titulo-catalogo">Nossos Produtos</h2>
+            
+            <!-- LISTA DE PRODUTOS (gerada pelo JS) -->
+            <div class="produtos-grid" id="catalogo">
+                <!-- O JavaScript vai inserir os produtos aqui -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- CARRINHO DE COMPRAS -->
+    <aside class="carrinho">
+        <div class="container">
+            <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
+            <div class="carrinho-itens" id="lista-produtos">
+                <!-- Carrinho gerado pelo JS -->
+            </div>
+            <div class="carrinho-total">
+                <p>Total: <span id="total-pedido">R$ 0,00</span></p>
+                <button onclick="finalizarPedido()" class="btn-finalizar">
+                    <i class="fab fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+                </button>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="container">
+            <p>PEDEAKI &copy; 2024 - Todos os direitos reservados</p>
+            <p>Entre em contato: (63) 99966-5779</p>
+        </div>
+    </footer>
 
-  <button onclick="finalizarPedido()" id="btn-finalizar">
-  Finalizar Pedido
-</button>
-
-  <script src="src/js/script.js"></script>
+    <script src="src/js/script.js"></script>
 </body>
 </html>
