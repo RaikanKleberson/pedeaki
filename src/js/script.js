@@ -5,7 +5,7 @@ const produtos = [
     nome: "Arroz 5kg", 
     preco: 28.90, 
     qtd: 0,
-    imagem: "/src/images/produtos/arroz.png" // Adicione suas imagens
+    imagem: "src/images/produtos/arroz.png" // Adicione suas imagens
   },
   { 
     id: 2, 
