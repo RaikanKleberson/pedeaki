@@ -19,28 +19,28 @@ const produtos = [
     nome: "Açúcar 1kg", 
     preco: 4.99, 
     qtd: 0,
-    imagem: "src/images/produtos/acucar.jpg"
+    imagem: "src/images/produtos/acucar.png"
   },
   { 
     id: 4, 
     nome: "Óleo 900ml", 
     preco: 7.90, 
     qtd: 0,
-    imagem: "src/images/produtos/oleo.jpg"
+    imagem: "src/images/produtos/oleo.png"
   },
   { 
     id: 5, 
     nome: "Café 500g", 
     preco: 12.90, 
     qtd: 0,
-    imagem: "src/images/produtos/cafe.jpg"
+    imagem: "src/images/produtos/cafe.png"
   },
   { 
     id: 6, 
     nome: "Leite 1L", 
     preco: 4.50, 
     qtd: 0,
-    imagem: "src/images/produtos/leite.jpg"
+    imagem: "src/images/produtos/leite.png"
   }
 ];
 
