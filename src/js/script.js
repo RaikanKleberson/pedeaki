@@ -1,103 +1,138 @@
-// Dados dos produtos - DB FAKE
+// Dados dos produtos com CATEGORIAS
 const produtos = [
+  // AÇOUGUE
   { 
     id: 1, 
-    nome: "Arroz 5kg", 
-    preco: 28.90, 
+    nome: "Picanha 1kg", 
+    preco: 89.90, 
     qtd: 0,
-    imagem: "src/images/produtos/arroz.png"
+    categoria: "acougue",
+    imagem: "src/images/produtos/picanha.png"
   },
   { 
     id: 2, 
-    nome: "Feijão 1kg", 
-    preco: 8.50, 
+    nome: "Frango Inteiro", 
+    preco: 18.90, 
     qtd: 0,
-    imagem: "src/images/produtos/feijao.png"
+    categoria: "acougue",
+    imagem: "src/images/produtos/frango.png"
   },
+  
+  // HORTIFRUTI
   { 
     id: 3, 
-    nome: "Açúcar 1kg", 
-    preco: 4.99, 
+    nome: "Tomate kg", 
+    preco: 6.50, 
     qtd: 0,
-    imagem: "src/images/produtos/acucar.png"
+    categoria: "hortifruti",
+    imagem: "src/images/produtos/tomate.png"
   },
   { 
     id: 4, 
-    nome: "Óleo 900ml", 
-    preco: 7.90, 
+    nome: "Alface Unid.", 
+    preco: 3.50, 
     qtd: 0,
-    imagem: "src/images/produtos/oleo.png"
+    categoria: "hortifruti",
+    imagem: "src/images/produtos/alface.png"
   },
+  
+  // MERCEARIA
   { 
     id: 5, 
-    nome: "Café 500g", 
-    preco: 12.90, 
+    nome: "Arroz 5kg", 
+    preco: 28.90, 
     qtd: 0,
-    imagem: "src/images/produtos/cafe.png"
+    categoria: "mercearia",
+    imagem: "src/images/produtos/arroz.png"
   },
   { 
     id: 6, 
-    nome: "Leite 1L", 
-    preco: 4.50, 
+    nome: "Feijão 1kg", 
+    preco: 8.50, 
     qtd: 0,
-    imagem: "src/images/produtos/leite.png"
+    categoria: "mercearia",
+    imagem: "src/images/produtos/feijao.png"
+  },
+  
+  // BEBIDAS
+  { 
+    id: 7, 
+    nome: "Coca-Cola 2L", 
+    preco: 9.90, 
+    qtd: 0,
+    categoria: "bebidas",
+    imagem: "src/images/produtos/cocacola2l.png"
+  },
+  
+  // LIMPEZA
+  { 
+    id: 8, 
+    nome: "Detergente 500ml", 
+    preco: 2.50, 
+    qtd: 0,
+    categoria: "limpeza",
+    imagem: "src/images/produtos/detergente.png"
   }
 ];
 
 // Elementos do DOM
-const catalogoEl = document.getElementById("catalogo");
 const listaCarrinhoEl = document.getElementById("lista-produtos");
 const totalPedidoEl = document.getElementById("total-pedido");
-
-// Nome e Endereço do Cliente
 const nomeClienteEl = document.getElementById("nome-cliente");
 const enderecoClienteEl = document.getElementById("endereco-cliente");
 
-//SLIDE BANNER
-
+// SLIDE BANNER
 let slide = document.querySelectorAll('.slide');
-
-let index = 0
+let index = 0;
 
 setInterval(() => {
-
   slide[index].classList.remove('active');
   index = (index + 1) % slide.length;
   slide[index].classList.add('active');
-
 }, 3000);
 
-
-// Inicializar catálogo
+// INICIALIZAR CATÁLOGO POR CATEGORIAS
 function inicializarCatalogo() {
-  catalogoEl.innerHTML = "";
+  const categorias = ['acougue', 'hortifruti', 'mercearia', 'bebidas', 'limpeza'];
   
-  produtos.forEach(produto => {
-    const produtoCard = document.createElement("div");
-    produtoCard.className = "produto-card";
+  categorias.forEach(cat => {
+    const container = document.getElementById(`${cat}-produtos`);
+    if (!container) return;
     
-    produtoCard.innerHTML = `
-      <div class="produto-imagem">
-        <img src="${produto.imagem || 'placeholder.jpg'}" alt="${produto.nome}" style="width:100%; border-radius:10px; height:200px; object-fit:cover;">
-      </div>
-      <h3 class="produto-nome">${produto.nome}</h3>
-      <p class="produto-preco">R$ ${produto.preco.toFixed(2)}</p>
-      <div class="controles">
-        <button class="btn-quantidade" onclick="diminuir(${produto.id})">
-          <i class="fas fa-minus"></i>
-        </button>
-        <span class="quantidade">${produto.qtd}</span>
-        <button class="btn-quantidade" onclick="aumentar(${produto.id})">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-    `;
+    container.innerHTML = "";
     
-    catalogoEl.appendChild(produtoCard);
+    // Filtrar produtos da categoria
+    const produtosDaCategoria = produtos.filter(p => p.categoria === cat);
+    
+    produtosDaCategoria.forEach(produto => {
+      const produtoCard = document.createElement("div");
+      produtoCard.className = "produto-card";
+      
+      produtoCard.innerHTML = `
+        <div class="produto-imagem">
+          <img src="${produto.imagem}" alt="${produto.nome}" 
+               style="width:100%; border-radius:10px; height:200px; object-fit:cover;"
+               onerror="this.src='https://via.placeholder.com/200x200?text=Sem+Imagem'">
+        </div>
+        <h3 class="produto-nome">${produto.nome}</h3>
+        <p class="produto-preco">R$ ${produto.preco.toFixed(2)}</p>
+        <div class="controles">
+          <button class="btn-quantidade" onclick="diminuir(${produto.id})">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="quantidade" id="qtd-${produto.id}">${produto.qtd}</span>
+          <button class="btn-quantidade" onclick="aumentar(${produto.id})">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      `;
+      
+      container.appendChild(produtoCard);
+    });
   });
 }
 
-// Atualizar carrinho
+// ATUALIZAR CARRINHO
 function atualizarCarrinho() {
   listaCarrinhoEl.innerHTML = "";
   let total = 0;
@@ -117,15 +152,18 @@ function atualizarCarrinho() {
     }
   });
   
-  // Atualizar total
   totalPedidoEl.textContent = `R$ ${total.toFixed(2)}`;
 }
 
-// Funções de quantidade
+// FUNÇÕES DE QUANTIDADE
 function aumentar(id) {
   const produto = produtos.find(p => p.id === id);
   produto.qtd++;
-  inicializarCatalogo();
+  
+  // Atualizar apenas o número visualmente
+  document.getElementById(`qtd-${id}`).textContent = produto.qtd;
+  
+  salvarCarrinho();
   atualizarCarrinho();
 }
 
@@ -133,80 +171,53 @@ function diminuir(id) {
   const produto = produtos.find(p => p.id === id);
   if (produto.qtd > 0) {
     produto.qtd--;
-    inicializarCatalogo();
+    
+    // Atualizar apenas o número visualmente
+    document.getElementById(`qtd-${id}`).textContent = produto.qtd;
+    
+    salvarCarrinho();
     atualizarCarrinho();
   }
 }
 
-// Salvar LocalStorage
+// LOCALSTORAGE
 function salvarCarrinho() {
-  localStorage.setItem('produtos', JSON.stringify(produtos))
+  localStorage.setItem('produtos', JSON.stringify(produtos));
 }
 
 function carregarCarrinho() {
-  const produtosSalvos = localStorage.getItem('produtos')
+  const produtosSalvos = localStorage.getItem('produtos');
 
   if (produtosSalvos) {
-    const produtosParse = JSON.parse(produtosSalvos)
+    const produtosParse = JSON.parse(produtosSalvos);
 
     produtosParse.forEach(produtoSalvo => {
-      const produto = produtos.find(p => p.id === produtoSalvo.id)
+      const produto = produtos.find(p => p.id === produtoSalvo.id);
       if (produto) {
-        produto.qtd = produtoSalvo.qtd
+        produto.qtd = produtoSalvo.qtd;
       }
-    })
+    });
   }
 }
 
-function aumentar(id) {
-  const produto = produtos.find(p => p.id === id);
-  produto.qtd++;
-  salvarCarrinho();
-  inicializarCatalogo();
-  atualizarCarrinho();
-}
-
-function diminuir(id) {
-  const produto = produtos.find(p => p.id === id);
-  if (produto.qtd > 0) {
-    produto.qtd--;
-    salvarCarrinho();
-    inicializarCatalogo();
-    atualizarCarrinho();
-  }
-}
-
-
-// Finalizar pedido no WhatsApp
+// FINALIZAR PEDIDO
 function finalizarPedido() {
-  
   if (!nomeClienteEl.value.trim() || !enderecoClienteEl.value.trim()) {
-  alert("Por favor, informe nome e endereço para entrega.");
-  return;
-}
+    alert("Por favor, informe nome e endereço para entrega.");
+    return;
+  }
 
-  let mensagem = "• *Pedido - PedeAki* •\n\n";
+  let mensagem = "🛒 *Pedido - PedeAki* 🛒\n\n";
   let total = 0;
 
   const nomeCliente = nomeClienteEl.value.trim();
   const enderecoCliente = enderecoClienteEl.value.trim();
 
-  if (!nomeCliente) {
-    alert("Por favor, informe seu nome.");
-    return;
-  }
-
-  if (!enderecoCliente) {
-    alert("Por favor, informe o endereço de entrega.");
-    return;
-  }
-
   produtos.forEach(produto => {
     if (produto.qtd > 0) {
       const subtotal = produto.preco * produto.qtd;
       mensagem += `→ ${produto.nome}\n`;
-      mensagem += `   Quantidade: ${produto.qtd}\n`;
-      mensagem += `   Subtotal: R$ ${subtotal.toFixed(2)}\n\n`;
+      mensagem += `   Qtd: ${produto.qtd} | R$ ${subtotal.toFixed(2)}\n\n`;
       total += subtotal;
     }
   });
@@ -216,9 +227,10 @@ function finalizarPedido() {
     return;
   }
 
-  mensagem += ` *VALOR TOTAL: R$ ${total.toFixed(2)}*\n\n`;
-  mensagem += ` *Cliente:* ${nomeCliente}\n`;
-  mensagem += ` *Endereço:* ${enderecoCliente}`;
+  mensagem += `━━━━━━━━━━━━━━━━━\n`;
+  mensagem += `💰 *TOTAL: R$ ${total.toFixed(2)}*\n\n`;
+  mensagem += `👤 *Cliente:* ${nomeCliente}\n`;
+  mensagem += `📍 *Endereço:* ${enderecoCliente}`;
 
   const telefoneMercado = "5563999665779";
   const url = `https://wa.me/${telefoneMercado}?text=${encodeURIComponent(mensagem)}`;
@@ -226,7 +238,7 @@ function finalizarPedido() {
   window.open(url, "_blank");
 }
 
-// Inicializar a página
+// INICIALIZAR
 document.addEventListener('DOMContentLoaded', () => {
   carregarCarrinho();
   inicializarCatalogo();

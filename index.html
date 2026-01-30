@@ -10,79 +10,102 @@
 
 <body>
 
-    <!-- HEADER COM LOGO -->
-    <header class="header">
-        <div class="container">
-            <img src="src/images/logotipopedeaki.png" class="logo" alt="Logo Pedeaki">
-        </div>
-    </header>
+<header class="header" id="banner">
+    <div class="container">
+    <img src="src/images/logotipopedeaki.png" class="logo" alt="Logo Pedeaki">
+    </div>
     
-    <!-- SLIDE BANNER -->
     <section class="banner">
         <div class="carousel">
-            <img src="src/images/banners/banner1.png" class="slide active" alt="Promocaoum">
-            <img src="src/images/banners/banner2.png" class="slide" alt="Promocaodois">
-            <img src="src/images/banners/banner3.png" class="slide" alt="Promocaotres">
+            <img src="src/images/banners/banner1.png" class="slide active">
+            <img src="src/images/banners/banner2.png" class="slide">
+            <img src="src/images/banners/banner3.png" class="slide">
         </div>
     </section>
-
-<!-- Menu Categorias -->
+</header>
+    
+<!-- MENU -->
 <nav class="menu-categorias">
-  <a href="#acougue">Açougue</a>
-  <a href="#hortifruti">Hortifruti</a>
-  <a href="#mercearia">Mercearia</a>
-  <a href="#bebidas">Bebidas</a>
-  <a href="#limpeza">Limpeza</a>
+    <a href="#acougue">Açougue</a>
+    <a href="#hortifruti">Hortifruti</a>
+    <a href="#mercearia">Mercearia</a>
+    <a href="#bebidas">Bebidas</a>
+    <a href="#limpeza">Limpeza</a>
 </nav>
 
+<main>
 
-    <!-- CATÁLOGO DE PRODUTOS -->
-    <main class="catalogo">
-        <div class="container">
-            <h2 class="titulo-catalogo">Nossos Produtos</h2>
-            
-            <!-- LISTA DE PRODUTOS (gerada pelo JS) -->
-            <div class="produtos-grid" id="catalogo">
-                <!-- O JavaScript vai inserir os produtos aqui -->
-            </div>
-        </div>
-    </main>
-    
-    <!-- CARRINHO DE COMPRAS -->
-    <aside class="carrinho">
-        <div class="container">
-            <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
-            <div class="carrinho-itens" id="lista-produtos">
-                <!-- Carrinho gerado pelo JS -->
-            </div>
+    <div class="container">
+    <h2 class="titulo-catalogo"></h2>
+    </div>
 
-            <!-- Nome e Endereço -->
-            <div class="dados-clientes">
-                <input type="text" id="nome-cliente" placeholder="Seu nome">
-                <input type="text" id="endereco-cliente" placeholder="Digite seu endereço" rows="3"></input>
-            </div>
+    <section id="acougue" class="categoria">
+    <div class="container">
+        <h2>Açougue</h2>
+        <div class="produtos-grid" id="acougue-produtos"></div>
+    </div>
+    </section>
 
-            <!-- Botão Carrinho -->
-            <div class="carrinho-total">
-                <p>Total: <span id="total-pedido">R$ 0,00</span></p>
-                <button onclick="finalizarPedido()" class="btn-finalizar">
-                    <i class="fab fa-whatsapp"></i> Finalizar Pedido no WhatsApp
-                </button>
-            </div>
-        </div>
-    </aside>
-    
-    <!-- RODAPÉ -->
-    <footer class="footer">
-        <div class="container">
-            <p>Nokaiz Tecnologia &copy; 2026 - Todos os direitos reservados</p>
-            <p>Entre em contato: (63) 99966-5779</p>
-        </div>
-    </footer>
+    <section id="hortifruti" class="categoria">
+    <div class="container">
+        <h2>Hortifruti</h2>
+        <div class="produtos-grid" id="hortifruti-produtos"></div>
+    </div>
+    </section>
 
-    <script src="src/js/script.js"></script>
-    <button id="btn-topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-  ⬆
-</button>
+    <section id="mercearia" class="categoria">
+    <div class="container">
+        <h2>Mercearia</h2>
+        <div class="produtos-grid" id="mercearia-produtos"></div>
+    </div>
+    </section>
+
+    <section id="bebidas" class="categoria">
+    <div class="container">
+        <h2>Bebidas</h2>
+        <div class="produtos-grid" id="bebidas-produtos"></div>
+    </div>
+    </section>
+
+    <section id="limpeza" class="categoria">
+    <div class="container">
+        <h2>Limpeza</h2>
+        <div class="produtos-grid" id="limpeza-produtos"></div>
+    </div>
+    </section>
+
+</main>
+
+<!-- CARRINHO -->
+<aside class="carrinho">
+    <div class="container">
+    <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
+
+    <div class="carrinho-itens" id="lista-produtos"></div>
+
+    <div class="dados-clientes">
+        <input type="text" id="nome-cliente" placeholder="Seu nome">
+        <textarea id="endereco-cliente" placeholder="Digite seu endereço" rows="3"></textarea>
+    </div>
+
+    <div class="carrinho-total">
+        <p>Total: <span id="total-pedido">R$ 0,00</span></p>
+        <button onclick="finalizarPedido()" class="btn-finalizar">
+        <i class="fab fa-whatsapp"></i> Finalizar Pedido
+        </button>
+    </div>
+    </div>
+</aside>
+
+<footer class="footer">
+    <div class="container">
+    <p>Nokaiz Tecnologia © 2026</p>
+    </div>
+</footer>
+
+<script src="src/js/script.js"></script>
+
+<button id="btn-topo" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆</button>
+
 </body>
 </html>
