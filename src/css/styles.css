@@ -34,7 +34,8 @@ body {
 
 /* == SLIDE BANNER == */
 .banner {
-    padding: 20px 0;
+    padding-top: 10px 0;
+    padding-bottom: 4px;
 }
 
 .carousel {
@@ -61,7 +62,25 @@ body {
     opacity: 1; 
 }
 
-/* ===== CATÁLOGO ===== */
+/*  Menu Categorias */
+.menu-categorias {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+        background: linear-gradient(90deg, #034e00, #02aa02);
+        display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.menu-categorias a {
+text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* CATÁLOGO */
 .catalogo {
     padding: 5px 0;
 }
@@ -69,7 +88,7 @@ body {
 .titulo-catalogo {
     text-align: center;
     margin-bottom: 5px ;
-    color: #2c3e50;
+    color: #000000;
     font-size: 20px;
 }
 
@@ -243,4 +262,19 @@ body {
     .banner-img {
         border-radius: 8px;
     }
+}
+
+#btn-topo {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #146300;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 20%;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
