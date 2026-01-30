@@ -1,11 +1,11 @@
-// Dados dos produtos
+// Dados dos produtos - DB FAKE
 const produtos = [
   { 
     id: 1, 
     nome: "Arroz 5kg", 
     preco: 28.90, 
     qtd: 0,
-    imagem: "src/images/produtos/arroz.png" // Adicione suas imagens
+    imagem: "src/images/produtos/arroz.png"
   },
   { 
     id: 2, 
@@ -48,6 +48,10 @@ const produtos = [
 const catalogoEl = document.getElementById("catalogo");
 const listaCarrinhoEl = document.getElementById("lista-produtos");
 const totalPedidoEl = document.getElementById("total-pedido");
+
+// Nome e Endereço do Cliente
+const nomeClienteEl = document.getElementById("nome-cliente");
+const enderecoClienteEl = document.getElementById("endereco-cliente");
 
 //SLIDE BANNER
 
@@ -134,38 +138,97 @@ function diminuir(id) {
   }
 }
 
+// Salvar LocalStorage
+function salvarCarrinho() {
+  localStorage.setItem('produtos', JSON.stringify(produtos))
+}
+
+function carregarCarrinho() {
+  const produtosSalvos = localStorage.getItem('produtos')
+
+  if (produtosSalvos) {
+    const produtosParse = JSON.parse(produtosSalvos)
+
+    produtosParse.forEach(produtoSalvo => {
+      const produto = produtos.find(p => p.id === produtoSalvo.id)
+      if (produto) {
+        produto.qtd = produtoSalvo.qtd
+      }
+    })
+  }
+}
+
+function aumentar(id) {
+  const produto = produtos.find(p => p.id === id);
+  produto.qtd++;
+  salvarCarrinho();
+  inicializarCatalogo();
+  atualizarCarrinho();
+}
+
+function diminuir(id) {
+  const produto = produtos.find(p => p.id === id);
+  if (produto.qtd > 0) {
+    produto.qtd--;
+    salvarCarrinho();
+    inicializarCatalogo();
+    atualizarCarrinho();
+  }
+}
+
+
 // Finalizar pedido no WhatsApp
 function finalizarPedido() {
-  let mensagem = "🛒 *PEDIDO - PEDEAKI*\n\n";
-  let total = 0;
   
+  if (!nomeClienteEl.value.trim() || !enderecoClienteEl.value.trim()) {
+  alert("Por favor, informe nome e endereço para entrega.");
+  return;
+}
+
+  let mensagem = "• *Pedido - PedeAki* •\n\n";
+  let total = 0;
+
+  const nomeCliente = nomeClienteEl.value.trim();
+  const enderecoCliente = enderecoClienteEl.value.trim();
+
+  if (!nomeCliente) {
+    alert("Por favor, informe seu nome.");
+    return;
+  }
+
+  if (!enderecoCliente) {
+    alert("Por favor, informe o endereço de entrega.");
+    return;
+  }
+
   produtos.forEach(produto => {
     if (produto.qtd > 0) {
       const subtotal = produto.preco * produto.qtd;
-      mensagem += `➡️ ${produto.nome}\n`;
+      mensagem += `→ ${produto.nome}\n`;
       mensagem += `   Quantidade: ${produto.qtd}\n`;
       mensagem += `   Subtotal: R$ ${subtotal.toFixed(2)}\n\n`;
       total += subtotal;
     }
   });
-  
+
   if (total === 0) {
     alert("Adicione produtos ao carrinho antes de finalizar!");
     return;
   }
-  
-  mensagem += ` *TOTAL DO PEDIDO: R$ ${total.toFixed(2)}*\n\n`;
-  mensagem += ` *Cliente:* [NOME DO CLIENTE]\n`;
-  mensagem += ` *Endereço:* [ENDEREÇO DE ENTREGA]`;
-  
+
+  mensagem += ` *VALOR TOTAL: R$ ${total.toFixed(2)}*\n\n`;
+  mensagem += ` *Cliente:* ${nomeCliente}\n`;
+  mensagem += ` *Endereço:* ${enderecoCliente}`;
+
   const telefoneMercado = "5563999665779";
   const url = `https://wa.me/${telefoneMercado}?text=${encodeURIComponent(mensagem)}`;
-  
+
   window.open(url, "_blank");
 }
 
 // Inicializar a página
 document.addEventListener('DOMContentLoaded', () => {
+  carregarCarrinho();
   inicializarCatalogo();
   atualizarCarrinho();
 });

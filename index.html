@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEDEAKI - Catálogo Online</title>
+    <title>PedeAki - Catálogo Online</title>
     <link rel="stylesheet" href="src/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -45,6 +45,14 @@
             <div class="carrinho-itens" id="lista-produtos">
                 <!-- Carrinho gerado pelo JS -->
             </div>
+
+            <!-- Nome e Endereço -->
+            <div class="dados-clientes">
+                <input type="text" id="nome-cliente" placeholder="Seu nome">
+                <input type="text" id="endereco-cliente" placeholder="Digite seu endereço" rows="3"></input>
+            </div>
+
+            <!-- Botão Carrinho -->
             <div class="carrinho-total">
                 <p>Total: <span id="total-pedido">R$ 0,00</span></p>
                 <button onclick="finalizarPedido()" class="btn-finalizar">
@@ -57,7 +65,7 @@
     <!-- RODAPÉ -->
     <footer class="footer">
         <div class="container">
-            <p>PEDEAKI &copy; 2024 - Todos os direitos reservados</p>
+            <p>Nokaiz Tecnologia &copy; 2026 - Todos os direitos reservados</p>
             <p>Entre em contato: (63) 99966-5779</p>
         </div>
     </footer>

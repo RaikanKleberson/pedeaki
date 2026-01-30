@@ -180,6 +180,24 @@ body {
     font-weight: bold;
 }
 
+/* Nome e Endereço */
+.dados-clientes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.dados-clientes input,
+
+.dados-clientes textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+
 /* BOTÃO FINALIZAR */
 .btn-finalizar {
     background: #25D366;
