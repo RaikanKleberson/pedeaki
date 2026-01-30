@@ -10,17 +10,12 @@ body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: #333;
     line-height: 1.6;
-
-    /* 🔥 EVITA QUALQUER SCROLL LATERAL */
-    overflow-x: hidden;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-
-    /* 🔥 PADDING RESPONSIVO */
-    padding: 0 16px;
+    padding: 0 50px;
 }
 
 /* ===== HEADER ===== */
@@ -40,7 +35,6 @@ body {
 .banner {
     padding: 10px 0 0;
 }
-
 .carousel {
     width: 100%;
     height: 160px;
@@ -51,10 +45,13 @@ body {
 .slide {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     position: absolute;
     top: 0;
     left: 0;
+
     opacity: 0;
 }
 
@@ -62,34 +59,43 @@ body {
     opacity: 1; 
 }
 
-/* ===== MENU CATEGORIAS (CORRIGIDO) ===== */
+/*  Menu Categorias */
 .menu-categorias {
+    position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
     background: #fff;
     z-index: 1000;
-    padding: 3px 0;
+    padding: 6px 0;
 
     display: flex;
-    flex-wrap: wrap;              /* 🔥 QUEBRA LINHA */
-    justify-content: center;      /* 🔥 CENTRALIZA */
-    gap: 8px;                     /* 🔥 ESPAÇAMENTO */
 
+    overflow-x: auto;
+    white-space: nowrap;
     border-bottom: 1px solid #e5e5e5;
 }
 
 .menu-categorias a {
+    flex-shrink: 0;
+}
+
+section {
+    scroll-margin-top: 80px;
+        padding: 24px 16px;
+}
+
+.menu-categorias a {
     text-decoration: none;
-    color: #000;
-    padding: 8px 14px;
+    color: #000000;
+    padding: 8px 13px;
     border-radius: 20px;
     font-weight: 500;
     transition: background 0.2s, color 0.2s;
-
-    white-space: nowrap;          /* 🔥 NÃO QUEBRA TEXTO */
 }
 
 .menu-categorias a:hover {
-    background: #007413;
+    background: #004b0c;
     color: #ffffff;
 }
 
@@ -98,21 +104,16 @@ body {
     color: #fff;
 }
 
-section {
-    scroll-margin-top: 80px;
-    padding: 24px 16px;
-}
-
-/* ===== RESTANTE DO SEU CSS (INALTERADO) ===== */
-
+/* Título Catálogo */
 .titulo-catalogo {
     text-align: center;
-    margin: 1px;
-    font-size: 1rem;
+    margin: 1px ;
+    font-size: 1.0rem;
     color: #2e2e2e;
     font-weight: 700;
 }
 
+/* GRID DE PRODUTOS - 3 COLUNAS */
 .produtos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -120,6 +121,7 @@ section {
     margin-bottom: 40px;
 }
 
+/* CARD DE PRODUTO */
 .produto-card {
     background: white;
     border-radius: 15px;
@@ -134,15 +136,152 @@ section {
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
+.produto-nome {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.produto-preco {
+    font-size: 1.5rem;
+    color: #27ae60;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* CONTROLES DE QUANTIDADE */
+.controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-quantidade {
+    background: #3498db;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-quantidade:hover {
+    background: #2980b9;
+}
+
+.quantidade {
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-width: 40px;
+}
+
+/* ===== CARRINHO ===== */
+.carrinho {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 30px auto;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.carrinho h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.carrinho-total {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #3498db;
+    text-align: center;
+}
+
+#total-pedido {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Nome e Endereço */
+.dados-clientes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.dados-clientes input,
+
+.dados-clientes textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+
+/* BOTÃO FINALIZAR */
+.btn-finalizar {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.btn-finalizar:hover {
+    background: #1da851;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
     .produtos-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
     }
-
+    
     .container {
-        padding: 0 12px;
+        padding: 0 15px;
+    }
+    
+    .banner-img {
+        border-radius: 8px;
     }
 }
 
