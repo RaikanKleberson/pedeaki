@@ -23,6 +23,16 @@ async function carregarPedidos() {
                 <p>Cliente: ${p.customerName}</p>
                 <p>Endereço: ${p.address}</p>
                 <p>Status: <b>${p.status}</b></p>
+                
+                ${
+                  p.status === "Pendente"
+                    ? `
+                    <button onclick="atualizarStatus(${p.id}, 'Saiu para entrega')">
+                        Enviar Pedido
+                    </button>
+                `
+                    : ""
+                }
             </div>
         `,
       )
@@ -34,3 +44,11 @@ async function carregarPedidos() {
 
 // Executa a função assim que a página abrir
 carregarPedidos();
+async function atualizarStatus(id, novoStatus) {
+  await fetch(`http://localhost:3000/order/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status: novoStatus }),
+  });
+  carregarPedidos(); // Isso faz a página "re-renderizar" os dados
+}

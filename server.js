@@ -67,3 +67,18 @@ app.post("/login", (req, res) => {
     res.status(401).json({ error: "Loja não encontrada" });
   }
 });
+
+app.patch("/order/:id", (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  // Procura o pedido pelo ID (convertendo ID para número, se necessário)
+  const order = orders.find((o) => o.id === parseInt(id));
+
+  if (order) {
+    order.status = status;
+    res.json({ message: "Status atualizado!", order });
+  } else {
+    res.status(404).json({ error: "Pedido não encontrado" });
+  }
+});
