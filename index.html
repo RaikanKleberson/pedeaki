@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Loja PedeAKI</h1>
+    <div id="produtos">Carregando...</div>
+
+    <script>
+      // O FETCH é o comando que liga o navegador (front) ao seu servidor (back)
+      fetch("http://localhost:3000/products", {
+        headers: { "x-tenant": "top-gas" },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const div = document.getElementById("produtos");
+          div.innerHTML = data.produtos
+            .map((p) => `<p>${p.name} - R$ ${p.price}</p>`)
+            .join("");
+        });
+    </script>
+  </body>
+</html>
